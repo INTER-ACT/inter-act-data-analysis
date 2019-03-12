@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+body {
+  background: #EAEAEA;
+}
+
+p{
+  font-size:1.25rem;font-weight:300
+}
+
+
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform .5s, opacity 1s;
+}
+
+button:active:after {
+  transform: scale(0, 0);
+  opacity: .3;
+  transition: 0s;
+}
+
+button.no-animation:after{
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: 100%;
+  transform: scale(0, 0);
+  opacity: 1;
+  transition: none;
+}
+button.no-animation:active:after{
+  opacity: 1;
+  transition: none;
+}
+
+button:focus {outline:0;}
+
+td.active.end-date.available,
+td.active.end-date.available:hover,
+td.active.start-date.available,
+td.today.active.end-date.available,
+td.today.active.start-date.active.end-date.available,
+td.active.end-date.in-range.available,
+td.active.start-date.available:hover,
+td.today.active.start-date.active.end-date.available:hover,
+td.active.end-date.in-range.available:hover,
+ngx-daterangepicker-material .md-drppicker .buttons .buttons_input .btn{
+  background: #21568C;
+  color: white;
+}
+table.table-condensed thead tr th{
+  color: black;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked,
+div.ng-value span{
+  background: rgba(33,86,140,0.4);
+}
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon:hover {
+  background: rgba(33,86,140,0.5);
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover{
+  background: rgba(33,86,140,0.2);
+}
+div.ng-value span{
+  background: none;
+}

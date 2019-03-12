@@ -1,0 +1,33 @@
+<div *ngIf="law && lawChange">
+<ul class="view-switch">
+  <li class="nav-item dropdown" routerLink="/datenanalyse/paragraphendiskussionen" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+    <a>
+      <button class="dropbtn hover no-animation">
+        Allgemein
+      </button>
+    </a>
+  </li>
+  <li class="nav-item dropdown" routerLinkActive="active">
+    <button class="dropbtn no-animation curser-default">
+      Paragraph
+    </button>
+    <div class="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','paragraph',law.gesetzes_id,'fakten']" routerLinkActive="active">Fakten</a>
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','paragraph',law.gesetzes_id,'diagramme']" routerLinkActive="active">Graphen</a>
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','paragraph',law.gesetzes_id,'kommentare']" routerLinkActive="active">Kommentare</a>
+    </div>
+  </li>
+  <li class="nav-item dropdown" routerLinkActive="active">
+    <button class="dropbtn no-animation curser-default">
+      Änderungsvorschlag
+    </button>
+    <div class="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','aenderungsvorschlag',lawChange.aenderungs_id,'fakten']" routerLinkActive="active">Fakten</a>
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','aenderungsvorschlag',lawChange.aenderungs_id,'diagramme']" routerLinkActive="active">Graphen</a>
+      <a class="dropdown-item" [routerLink]="['/datenanalyse','paragraphendiskussionen','aenderungsvorschlag',lawChange.aenderungs_id,'kommentare']" routerLinkActive="active">Kommentare</a>
+    </div>
+  </li>
+</ul>
+<router-outlet></router-outlet>
+</div>
+<app-loading-animation *ngIf="!law || !lawChange"></app-loading-animation>

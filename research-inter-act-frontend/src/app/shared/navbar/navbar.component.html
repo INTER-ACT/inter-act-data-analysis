@@ -1,0 +1,41 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-grey fixed-top">
+  <a routerLink="/csv_export/paragraphendiskussionen" class="navbar-brand">
+    <img src="../../../assets/INTER-ACT-Logo.png" alt="INTER-ACT-Logo" width="300" height="79">
+  </a>
+  <div class="collapse navbar-collapse" id="navbar" #menu>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <button class="dropbtn no-animation">
+          CSV-Export
+        </button>
+        <div class="navbarDropdown">
+          <a class="dropdown-item" routerLink="/csv_export/paragraphendiskussionen" menuClose [menu]="menu" routerLinkActive="active">Paragraphendiskussionen</a>
+          <a class="dropdown-item" routerLink="/csv_export/aenderungsvorschlaege" menuClose [menu]="menu" routerLinkActive="active">Änderungsvorschläge</a>
+          <a class="dropdown-item" routerLink="/csv_export/kommentare" menuClose [menu]="menu" routerLinkActive="active">Kommentare</a>
+          <a class="dropdown-item" routerLink="/csv_export/user_ratings_tags" menuClose [menu]="menu" routerLinkActive="active">User, Ratings, Tags</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" routerLinkActive="active">
+        <button class="dropbtn no-animation">
+          Datenanalyse
+        </button>
+        <div class="navbarDropdown">
+          <a class="dropdown-item" routerLink="/datenanalyse/wordcloud" menuClose [menu]="menu" routerLinkActive="active">WordCloud</a>
+          <a class="dropdown-item" routerLink="/datenanalyse/paragraphendiskussionen" menuClose [menu]="menu" routerLinkActive="active">Paragraphen</a>
+          <a class="dropdown-item" routerLink="/datenanalyse/user" menuClose [menu]="menu" routerLinkActive="active">User</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" routerLink="/konsolidierte_gesetzesfassung" routerLinkActive="active">
+        <a menuClose [menu]="menu" >
+          <button class="dropbtn hover no-animation">
+            Konsolidierte Gesetzesfassung
+          </button>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <button class="navbar-toggler ml-auto no-animation" id="navbar-toggler-right" (click)="ariaExpandet=!ariaExpandet" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+

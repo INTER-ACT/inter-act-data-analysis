@@ -1,0 +1,55 @@
+<h1>
+  User
+</h1>
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>User_id</th>
+    <th>Username</th>
+    <th>Geschlecht</th>
+    <th>Postleitzahl</th>
+    <th>Ort</th>
+    <th>Beruf</th>
+    <th>Geburtsjahr</th>
+    <th>Rechtskenntnisse</th>
+    <th>Ausbildung</th>
+  </tr>
+  </thead>
+</table>
+  <button class="btn btn-lg btn-success ripple" (click)="downloadCSV(0)" [disabled]="!loadedUsers">
+    <i class='fa fa-circle-o-notch fa-spin' *ngIf="!loadedUsers"></i>{{!loadedUsers?" Gesamtübersicht der User wird heruntergeladen":
+    "Gesamtübersicht der User exportieren"}}</button>
+<h1>
+  Ratings
+</h1>
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Rating_id</th>
+    <th>User_id</th>
+    <th>Referenz</th>
+    <th>Aspekt</th>
+    <th>Wertung</th>
+    <th>Rating_Bezugs_id</th>
+    <th>Datum</th>
+  </tr>
+  </thead>
+</table>
+<button class="btn btn-lg btn-success" (click)="downloadCSV(1)" [disabled]="!loadedRatings">
+  <i class='fa fa-circle-o-notch fa-spin' *ngIf="!loadedRatings"></i>{{!loadedRatings?" Gesamtübersicht der Ratings wird heruntergeladen":
+  "Gesamtübersicht der Ratings exportieren"}}</button>
+<h1>
+  Tags
+</h1>
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Bezugs_id</th>
+    <th>Referenz</th>
+    <th>Tag</th>
+  </tr>
+  </thead>
+</table>
+<button class="btn btn-lg btn-success" (click)="downloadCSV(2)" [disabled]="!loadedTags">
+  <i class='fa fa-circle-o-notch fa-spin' *ngIf="!loadedTags"></i>{{!loadedTags?" Gesamtübersicht der Tags wird heruntergeladen":
+  "Gesamtübersicht der Tags exportieren"}}</button>

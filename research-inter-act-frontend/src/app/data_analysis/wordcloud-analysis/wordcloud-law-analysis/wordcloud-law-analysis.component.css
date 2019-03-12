@@ -1,0 +1,12 @@
+p{
+  font-size: 1rem;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+ng-select {
+  width: 500px;
+}
+.border{
+  border: black solid 1px;
+}
+

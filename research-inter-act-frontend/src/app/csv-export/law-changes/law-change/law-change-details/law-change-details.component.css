@@ -1,0 +1,15 @@
+button{
+  float: left;
+}
+
+hr{
+  border-width: 5px;
+}
+label {
+  float: left;
+  margin-left: 10px;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

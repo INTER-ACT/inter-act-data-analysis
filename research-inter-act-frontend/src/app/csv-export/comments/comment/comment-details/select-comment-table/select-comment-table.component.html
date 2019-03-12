@@ -1,0 +1,51 @@
+<div class="row" *ngIf="columns.length!=0">
+  <div class="col-lg-12">
+    <p>Vorschau</p>
+    <table class="table table-responsive">
+      <thead class="thead-light">
+      <tr>
+        <th *ngFor="let column of columns | sortCommentColumns">{{column}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td *ngIf="contains('Kommentar_id')">{{comment.kommentar_id}}</td>
+        <td *ngIf="contains('User_id')">{{comment.user_id}}</td>
+        <td *ngIf="contains('Referenz')">{{comment.typ | typToReferenzPipe}}</td>
+        <td *ngIf="contains('Kommentar_Bezugs_id')">
+          <a *ngIf="comment.typ==='k'" routerLink="/csv_export/kommentare/{{comment.kommentar_bezugs_id}}">{{comment.kommentar_bezugs_id}}</a>
+          <a *ngIf="comment.typ==='g'" routerLink="/csv_export/paragraphendiskussionen/{{comment.kommentar_bezugs_id}}">{{comment.kommentar_bezugs_id}}</a>
+          <a *ngIf="comment.typ==='v'" routerLink="/csv_export/aenderungsvorschlaege/{{comment.kommentar_bezugs_id}}">{{comment.kommentar_bezugs_id}}</a>
+        </td>
+        <td class="text-not-centered"
+            *ngIf="contains('Kommentar')">{{comment.kommentar | removeHtmlTagsFromString |shortenString: showMore ? 0 : commentDisplayLength}}
+          <span *ngIf="(comment.kommentar|removeHtmlTagsFromString).length>commentDisplayLength" class="show-more"
+                (click)="showMore=!showMore"><br>{{showMore ? "weniger" : "mehr"}}</span>
+        </td>
+        <td *ngIf="contains('Likes')">{{comment.likes}}</td>
+        <td *ngIf="contains('Datum')">{{comment.datum | date: 'dd.MM.yyyy hh:mm'}}</td>
+        <td *ngIf="contains('Kommentare_id')">
+          <a routerLink="/csv_export/kommentare/{{comment.kommentare_id[0]}}">{{comment.kommentare_id[0]}}</a>
+        </td>
+        <td *ngIf="contains('Tags')">{{comment.tags[0]}}</td>
+      </tr>
+      <tr *ngFor="let count of getRowCount()|numberToArray|removeFirstElementFromArray">
+        <td *ngIf="emptyColumnContains('Kommentar_id')"></td>
+        <td *ngIf="emptyColumnContains('User_id')"></td>
+        <td *ngIf="emptyColumnContains('Referenz')"></td>
+        <td *ngIf="emptyColumnContains('Kommentar_Bezugs_id')"></td>
+        <td *ngIf="emptyColumnContains('Kommentar')"></td>
+        <td *ngIf="emptyColumnContains('Likes')"></td>
+        <td *ngIf="emptyColumnContains('Datum')"></td>
+
+        <td *ngIf="collectionContains('Kommentare_id',count)">
+          <a routerLink="/csv_export/kommentare/{{comment.kommentare_id[count]}}">{{comment.kommentare_id[count]}}</a>
+        </td>
+        <td *ngIf="emptyCollectionContains('Kommentare_id',count)"></td>
+        <td *ngIf="collectionContains('Tags',count)">{{comment.tags[count]}}</td>
+        <td *ngIf="emptyCollectionContains('Tags',count)"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

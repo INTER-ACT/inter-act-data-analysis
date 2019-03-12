@@ -1,0 +1,27 @@
+<div class="container" *ngIf="law!=null">
+  <h1>Paragraphendiskussion zu §{{law.paragraph}}</h1>
+  <app-select-law-columns [law]="law"></app-select-law-columns>
+  <app-select-law-references [law]="law"></app-select-law-references>
+  <app-select-law-table [law]="law"></app-select-law-table>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <button class="btn btn-lg btn-success"
+              [disabled]="columns.length==0 ||
+              (!loaded||!loadedLawChanges||!loadedComments||!loadedRatings)
+              ||!loadedZip"
+              (click)="!zipped?downloadBlob():downloadZippedBlob()">
+        <i class='fa fa-circle-o-notch fa-spin'
+           *ngIf="!loaded||!loadedLawChanges||!loadedComments||!loadedRatings||!loadedZip"></i>
+        {{!loaded||!loadedLawChanges||!loadedComments||!loadedRatings ||!loadedZip
+        ? "Paragraph wird exportiert" : "Exportieren"}}</button>
+      <label class="checkbox-inline">
+        <input type="checkbox"
+               [checked]="zipped"
+               (change)="changeZipped()"
+               [disabled]="!exportLawChanges && !exportComments && !exportRatings">  Als ZIP-Datei herunterladen
+      </label>
+    </div>
+  </div>
+</div>
+<app-loading-animation *ngIf="law==null"></app-loading-animation>

@@ -1,0 +1,15 @@
+<div *ngIf="lawArray?.length!=0">
+  <ng-select #lawSelect *ngIf="lawArray?.length!=0"
+             [items]="lawArray" [clearOnBackspace]="true"
+             [clearable]="false" [searchable]="false"
+             [(ngModel)]="selectedLawId"
+             (change)="changeURL()"
+             placeholder="Keine Auswahl getroffen"
+             bindLabel="showText" bindValue="id">
+    <ng-template ng-header-tmp>
+      <input style="width: 100%; line-height: 24px" type="text" placeholder="Suchen" (input)="lawSelect.filter($event.target.value)" />
+    </ng-template>
+  </ng-select>
+  <router-outlet></router-outlet>
+</div>
+<app-loading-animation *ngIf="lawArray?.length==0"></app-loading-animation>

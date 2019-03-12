@@ -1,0 +1,25 @@
+.row{
+  margin-top: 20px;
+}
+td {
+  text-align: center;
+}
+td.text-not-centered{
+  text-align: left;
+}
+table{
+  max-height: 400px;
+}
+
+
+.show-more{
+  cursor: pointer;
+  color: #21568C;
+  text-decoration: underline;
+  text-underline-mode: solid;
+  text-underline-style: dash;
+}
+
+.show-more:hover{
+  color: #a3a5aa;
+}

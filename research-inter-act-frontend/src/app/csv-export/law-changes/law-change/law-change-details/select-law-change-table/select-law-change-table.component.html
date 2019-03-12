@@ -1,0 +1,60 @@
+<div class="row" *ngIf="columns.length!=0">
+  <div class="col-lg-12">
+    <p>Vorschau</p>
+    <table class="table table-responsive">
+      <thead class="thead-light">
+      <tr>
+        <th *ngFor="let column of columns | sortLawChangeColumns">{{column}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td *ngIf="contains('Änderungs_id')">{{lawChange.aenderungs_id}}</td>
+        <td *ngIf="contains('Gesetzes_id')">{{lawChange.gesetzes_id}}</td>
+        <td *ngIf="contains('User_id')">{{lawChange.user_id}}</td>
+        <td *ngIf="contains('Titel_neu')">{{lawChange.titel_neu}}</td>
+        <td *ngIf="contains('Gesetzestext_neu')">{{lawChange.gesetzestext_neu|shortenString:showMore_gesetzestext_neu?0:lawChangeDisplayLength}}
+          <span *ngIf="lawChange.gesetzestext_neu.length>lawChangeDisplayLength" class="show-more"
+                (click)="showMore_gesetzestext_neu=!showMore_gesetzestext_neu"><br>{{showMore_gesetzestext_neu ? "weniger" : "mehr"}}</span></td>
+        <td *ngIf="contains('Begründung')">{{lawChange.begruendung | removeHtmlTagsFromString |shortenString:showMore_begruendung?0:lawChangeDisplayLength}}
+          <span *ngIf="(lawChange.begruendung|removeHtmlTagsFromString).length>lawChangeDisplayLength" class="show-more"
+                (click)="showMore_begruendung=!showMore_begruendung"><br>{{showMore_begruendung ? "weniger" : "mehr"}}</span></td>
+        <td *ngIf="contains('Referenz')">{{lawChange.typ | typToReferenzPipe}}</td>
+        <td *ngIf="contains('Änderungs_Bezugs_id')">
+          <a *ngIf="lawChange.typ==='g'" routerLink="/csv_export/paragraphendiskussionen/{{lawChange.aenderungs_bezugs_id}}">{{lawChange.aenderungs_bezugs_id}}</a>
+          <a *ngIf="lawChange.typ==='v'" routerLink="/csv_export/aenderungsvorschlaege/{{lawChange.aenderungs_bezugs_id}}">{{lawChange.aenderungs_bezugs_id}}</a>
+        </td>
+        <td *ngIf="contains('Datum')">{{lawChange.datum | date: 'dd.MM.yyyy hh:mm'}}</td>
+        <td *ngIf="contains('Änderungen_id')"><a  routerLink="/csv_export/aenderungsvorschlaege/{{lawChange.aenderungen_id[0]}}">{{lawChange.aenderungen_id[0]}}</a></td>
+        <td *ngIf="contains('Kommentare_id')"><a routerLink="/csv_export/kommentare/{{lawChange.kommentare_id[0]}}">{{lawChange.kommentare_id[0]}}</a></td>
+        <td *ngIf="contains('Ratings_id')">{{lawChange.ratings_id[0]}}</td>
+        <td *ngIf="contains('Tags')">{{lawChange.tags[0]}}</td>
+      </tr>
+      <tr *ngFor="let count of getRowCount()|numberToArray|removeFirstElementFromArray">
+        <td *ngIf="emptyColumnContains('Änderungs_id')"></td>
+        <td *ngIf="emptyColumnContains('Gesetzes_id')"></td>
+        <td *ngIf="emptyColumnContains('User_id')"></td>
+        <td *ngIf="emptyColumnContains('Titel_neu')"></td>
+        <td *ngIf="emptyColumnContains('Gesetzestext_neu')"></td>
+        <td *ngIf="emptyColumnContains('Begründung')"></td>
+        <td *ngIf="emptyColumnContains('Referenz')"></td>
+        <td *ngIf="emptyColumnContains('Änderungs_Bezugs_id')"></td>
+        <td *ngIf="emptyColumnContains('Datum')"></td>
+
+        <td *ngIf="collectionContains('Änderungen_id',count)">
+          <a routerLink="/csv_export/aenderungsvorschlaege/{{lawChange.aenderungen_id[count]}}">{{lawChange.aenderungen_id[count]}}</a>
+        </td>
+        <td *ngIf="emptyCollectionContains('Änderungen_id',count)"></td>
+        <td *ngIf="collectionContains('Kommentare_id',count)">
+          <a routerLink="/csv_export/kommentare/{{lawChange.kommentare_id[count]}}">{{lawChange.kommentare_id[count]}}</a>
+        </td>
+        <td *ngIf="emptyCollectionContains('Kommentare_id',count)"></td>
+        <td *ngIf="collectionContains('Ratings_id',count)">{{lawChange.ratings_id[count]}}</td>
+        <td *ngIf="emptyCollectionContains('Ratings_id',count)"></td>
+        <td *ngIf="collectionContains('Tags',count)">{{lawChange.tags[count]}}</td>
+        <td *ngIf="emptyCollectionContains('Tags',count)"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

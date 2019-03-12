@@ -1,0 +1,9 @@
+<div class="button-wrapper">
+  <button [ngClass]="{'button-active':setting.wert==0}" (click)="editSetting(0)">-3</button>
+  <button [ngClass]="{'button-active':setting.wert==1}" (click)="editSetting(1)">-2</button>
+  <button [ngClass]="{'button-active':setting.wert==2}" (click)="editSetting(2)">-1</button>
+  <button [ngClass]="{'button-active':setting.wert==3}" (click)="editSetting(3)">0</button>
+  <button [ngClass]="{'button-active':setting.wert==4}" (click)="editSetting(4)">1</button>
+  <button [ngClass]="{'button-active':setting.wert==5}" (click)="editSetting(5)">2</button>
+  <button class="rightest-button" [ngClass]="{'button-active':setting.wert==6}" (click)="editSetting(6)">3</button>
+</div>

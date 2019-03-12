@@ -1,0 +1,19 @@
+<h1>Wordcloud</h1>
+<h3><small class="text-muted">Allgemeine Benutzung</small></h3>
+<p>Zeigt wie die Benutzer zu den Paragraphen gelangen</p>
+<input type="text" ngxDaterangepickerMd [(ngModel)]="selected"
+       [locale]="{applyLabel: 'Auswählen', format: 'DD.MM.YYYY'}"
+       class="form-control" placeholder="Zeitraum auswählen" (change)="changeSelected()"/>
+
+<app-wordcloud-line-chart
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()"
+  [statistcs]="statisticsArray">
+</app-wordcloud-line-chart>
+<app-wordcloud-bar-chart
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()"
+  [statistcs]="statisticsArray"
+  [statistcs]="statisticsArray">
+</app-wordcloud-bar-chart>
+<router-outlet></router-outlet>

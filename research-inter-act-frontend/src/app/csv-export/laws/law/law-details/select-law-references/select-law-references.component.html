@@ -1,0 +1,74 @@
+<div class="row" *ngIf="law.aenderungen_id.length>0 || law.kommentare_id.length>0 || law.ratings_id.length>0">
+  <div class="col-lg-7">
+    <p>Mitimportieren der betreffenden</p>
+  </div>
+</div>
+<div class="row no-margin-top" *ngIf="law.aenderungen_id.length>0">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="add-export card-body" [ngClass]="{'selected':exportLawChanges}">Änderungsvorschläge
+        <span
+          class="fa form-control-feedback"
+          (click)="changeExportLawChanges()"
+          [ngClass]="{'fa-check':exportLawChanges,
+        'fa-remove':!exportLawChanges}"></span>
+        <div id="law-changes-settings" class="collapse" [ngClass]="{'show':exportLawChanges}">
+            <label class="radio lawChanges-radio">Alle
+              <input type="radio" name="lawChanges-radio" (click)="setExportAllLawChanges(true)">
+              <span class="checkmark"></span>
+            </label>
+            <label class="radio lawChanges-radio float-left">Nur direkte
+              <input type="radio" name="lawChanges-radio" checked (click)="setExportAllLawChanges(false)">
+              <span class="checkmark"></span>
+            </label>
+          <div class="lawChanges-comments-radio float-left">
+            <strong>Kommentare</strong>
+            <label class="radio lawChanges-comments-radio">Zu Allen
+              <input type="radio" name="lawChanges-comments-radio" (click)="setExportLawChanges_comments(true)">
+              <span class="checkmark"></span>
+            </label>
+            <label class="radio lawChanges-comments-radio">Keine
+              <input type="radio" name="lawChanges-comments-radio" checked (click)="setExportLawChanges_comments(false)">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          <div class="lawChanges-ratings-radio float-left">
+            <strong>Ratings</strong>
+            <label class="radio lawChanges-ratings-radio">Zu Allen
+              <input type="radio" name="lawChanges-ratings-radio" (click)="setExportLawChanges_ratings(true)">
+              <span class="checkmark"></span>
+            </label>
+            <label class="radio lawChanges-ratings-radio">Keine
+              <input type="radio" name="lawChanges-ratings-radio" checked (click)="setExportLawChanges_ratings(false)">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row less-margin-top" *ngIf="law.kommentare_id.length>0"
+     [ngClass]="{'no-margin-top':!law.aenderungen_id.length>0}">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="add-export card-body" [ngClass]="{'selected':exportComments}">Kommentare <span
+        class="fa form-control-feedback"
+        (click)="changeExportComments()"
+        [ngClass]="{'fa-check':exportComments,
+        'fa-remove':!exportComments}"></span></div>
+    </div>
+  </div>
+</div>
+<div class="row less-margin-top" *ngIf="law.ratings_id.length>0"
+     [ngClass]="{'no-margin-top':!law.kommentare_id.length>0&&!law.aenderungen_id.length>0}">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="add-export card-body" [ngClass]="{'selected':exportRatings}">Ratings <span
+        class="fa form-control-feedback"
+        (click)="changeExportRatings()"
+        [ngClass]="{'fa-check':exportRatings,
+        'fa-remove':!exportRatings}"></span></div>
+    </div>
+  </div>
+</div>

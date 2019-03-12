@@ -1,0 +1,10 @@
+.form-control{
+  width: 500px;
+}
+ng-select{
+  margin-top: 10px;
+  width: 500px;
+}
+div.ng-value span{
+  background: rgba(33,86,140,0.4);
+}

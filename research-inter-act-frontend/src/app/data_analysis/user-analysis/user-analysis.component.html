@@ -1,0 +1,37 @@
+<h1>User</h1>
+<p>Vergleichen der Useraktivitäten über einen bestimmten Zeitraum</p>
+<input type="text" ngxDaterangepickerMd [(ngModel)]="selected"
+       [locale]="{applyLabel: 'Auswählen', format: 'DD.MM.YYYY'}"
+       class="form-control" placeholder="Zeitraum auswählen" />
+<ng-select [items]="users|async"
+           bindLabel="username"
+           [closeOnSelect]="false"
+           [multiple]="true"
+           placeholder="User auswählen"
+           [(ngModel)]="selectedUsers">
+</ng-select>
+<h3><small class="text-muted">Allgemeine Aktivität</small></h3>
+<p>Zeigt die ganzen Aktivitäten der User</p>
+<app-user-line-chart
+  [users]="selectedUsers"
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()"
+  >
+</app-user-line-chart>
+<h3><small class="text-muted">Aktiv teilgenommen</small></h3>
+<p>Zeigt nur aktive Aktivitäten(Kommentare/ÄV schreiben)</p>
+<app-active-line-chart
+  [users]="selectedUsers"
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()">
+</app-active-line-chart>
+<h3><small class="text-muted">Passiv teilgenommen</small></h3>
+<p>Zeigt nur passive Aktivitäten(Bewerten)</p>
+<app-passive-line-chart
+  [users]="selectedUsers"
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()">
+</app-passive-line-chart>
+
+
+

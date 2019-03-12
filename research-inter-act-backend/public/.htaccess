@@ -1,0 +1,43 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+
+	# Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+	RewriteRule ^api/(.*)$ /index.php?_REQUEST=$1 [NC,L,QSA]
+
+    RewriteCond %{REQUEST_FILENAME} -s [OR]
+    RewriteCond %{REQUEST_FILENAME} -l [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^.*$ - [NC,L]
+
+    RewriteRule ^(.*) /index.html [NC,L,QSA]
+
+
+	#Authentification
+
+	AuthUserFile /var/www/vhosts/inter-act.net/httpdocs/intern/.htpasswd
+	AuthType Basic
+	AuthName Admin-Panel
+
+	SetEnvIf Request_URI /api/wordcloud  noauth=1
+	SetEnvIf Request_URI /api/statistik noauth=1
+	SetEnvIf Request_URI /api/gesetze/neu noauth=1
+	SetEnvIf Request_URI /api/gesetze/neu/html noauth=1
+	SetEnvIf Request_URI /api/user/(.*)/gesetze/neu noauth=1
+	SetEnvIf Request_URI /api/user/(.*)/gesetze/neu/html noauth=1
+	SetEnvIf Request_URI /favicon.ico noauth=1
+	<RequireAny>
+  		Require env noauth
+  		Require env REDIRECT_noauth
+  		Require valid-user
+	</RequireAny>
+
+
+    Header set Access-Control-Allow-Origin 'research.inter-act.net'
+</IfModule>

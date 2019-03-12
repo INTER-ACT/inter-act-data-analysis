@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-lg-7">
+    <p>Exportiert werden folgende Spalten</p>
+    <div class="card">
+      <div class="card-body">
+        <app-selected-law-column style="display: block" [@appearances] *ngFor="let column of selectedColumns | sortLawColumns"
+                                     [column]="column"></app-selected-law-column>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <p>Diese Spalten können noch hinzugefügt werden</p>
+    <div class="card">
+      <div class="card-body">
+        <app-deselected-law-column style="display: block" [@appearances] *ngFor="let column of deselectedColumns"
+                                       [column]="column"></app-deselected-law-column>
+      </div>
+    </div>
+  </div>
+</div>
+

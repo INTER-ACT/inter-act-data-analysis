@@ -1,0 +1,59 @@
+<div class="row" *ngIf="columns.length!=0">
+  <div class="col-lg-12">
+    <p>Vorschau</p>
+    <table class="table table-responsive">
+      <thead class="thead-light">
+      <tr>
+        <th *ngFor="let column of columns | sortLawColumns">{{column}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td *ngIf="contains('Gesetzes_id')">{{law.gesetzes_id}}</td>
+      <td *ngIf="contains('Gesetz')">{{law.gesetz}}</td>
+      <td *ngIf="contains('Paragraph')">{{law.paragraph}}</td>
+      <td *ngIf="contains('Titel')">{{law.titel}}</td>
+      <td *ngIf="contains('Gesetzestext')">{{law.gesetzestext|shortenString:showMore_gesetzestext?0:lawDisplayLength}}
+        <span *ngIf="law.gesetzestext.length>lawDisplayLength" class="show-more"
+              (click)="showMore_gesetzestext=!showMore_gesetzestext"><br>{{showMore_gesetzestext ? "weniger" : "mehr"}}</span></td>
+      <td *ngIf="contains('Erklärung')">{{law.erklaerung | removeHtmlTagsFromString |shortenString:showMore_erklaerung?0:lawDisplayLength}}
+        <span *ngIf="(law.erklaerung|removeHtmlTagsFromString).length>lawDisplayLength" class="show-more"
+              (click)="showMore_erklaerung=!showMore_erklaerung"><br>{{showMore_erklaerung ? "weniger" : "mehr"}}</span></td>
+      <td *ngIf="contains('Bundesgesetzblatt')">{{law.bgbl}}</td>
+      <td *ngIf="contains('Änderungen_id')"><a  routerLink="/csv_export/aenderungsvorschlaege/{{law.aenderungen_id[0]}}">{{law.aenderungen_id[0]}}</a></td>
+      <td *ngIf="contains('Kommentare_id')"><a routerLink="/csv_export/kommentare/{{law.kommentare_id[0]}}">{{law.kommentare_id[0]}}</a></td>
+      <td *ngIf="contains('Ratings_id')">{{law.ratings_id[0]}}</td>
+        <td *ngIf="contains('Tags')">{{law.tags[0]}}</td>
+      <td *ngIf="contains('Originaltext')">{{law.originaltext?"Ja":"Nein"}}</td>
+      <td *ngIf="contains('Datum')">{{law.datum | date: 'dd.MM.yyyy hh:mm'}}</td>
+      <td *ngIf="contains('User_id')">{{law.user_id}}</td>
+      </tr>
+      <tr *ngFor="let count of getRowCount()|numberToArray|removeFirstElementFromArray">
+        <td *ngIf="emptyColumnContains('Gesetzes_id')"></td>
+        <td *ngIf="emptyColumnContains('Gesetz')"></td>
+        <td *ngIf="emptyColumnContains('Paragraph')"></td>
+        <td *ngIf="emptyColumnContains('Titel')"></td>
+        <td *ngIf="emptyColumnContains('Gesetzestext')"></td>
+        <td *ngIf="emptyColumnContains('Erklärung')"></td>
+        <td *ngIf="emptyColumnContains('Bundesgesetzblatt')"></td>
+
+        <td *ngIf="collectionContains('Änderungen_id',count)">
+          <a routerLink="/csv_export/aenderungsvorschlaege/{{law.aenderungen_id[count]}}">{{law.aenderungen_id[count]}}</a>
+        </td>
+        <td *ngIf="emptyCollectionContains('Änderungen_id',count)"></td>
+        <td *ngIf="collectionContains('Kommentare_id',count)">
+          <a routerLink="/csv_export/kommentare/{{law.kommentare_id[count]}}">{{law.kommentare_id[count]}}</a>
+        </td>
+        <td *ngIf="emptyCollectionContains('Kommentare_id',count)"></td>
+        <td *ngIf="collectionContains('Ratings_id',count)">{{law.ratings_id[count]}}</td>
+        <td *ngIf="emptyCollectionContains('Ratings_id',count)"></td>
+        <td *ngIf="collectionContains('Tags',count)">{{law.tags[count]}}</td>
+        <td *ngIf="emptyCollectionContains('Tags',count)"></td>
+        <td *ngIf="emptyColumnContains('Originaltext')"></td>
+        <td *ngIf="emptyColumnContains('Datum')"></td>
+        <td *ngIf="emptyColumnContains('User_id')"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

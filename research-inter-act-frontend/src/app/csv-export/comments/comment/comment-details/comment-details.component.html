@@ -1,0 +1,24 @@
+<div class="container" *ngIf="comment!=null">
+  <h1>Kommentar {{comment.kommentar_id }}</h1>
+  <app-select-comment-columns [comment]="comment"></app-select-comment-columns>
+  <app-select-comment-references [comment]="comment"></app-select-comment-references>
+  <app-select-comment-table [comment]="comment"></app-select-comment-table>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <button class="btn btn-lg btn-success"
+              [disabled]="columns.length==0 || (!loaded||!loadedSubComments||!loadedReference) ||!loadedZip"
+              (click)="!zipped?downloadBlob():downloadZippedBlob()">
+        <i class='fa fa-circle-o-notch fa-spin'
+           *ngIf="!loaded||!loadedSubComments||!loadedReference||!loadedZip"></i>
+        {{!loaded||!loadedSubComments||!loadedReference||!loadedZip ? "Kommentar wird exportiert" : "Exportieren"}}</button>
+      <label class="checkbox-inline">
+        <input type="checkbox"
+               [checked]="zipped"
+               (change)="changeZipped()"
+        [disabled]="!exportReference && !exportSubcomments">  Als ZIP-Datei herunterladen
+      </label>
+    </div>
+  </div>
+</div>
+<app-loading-animation *ngIf="comment==null"></app-loading-animation>

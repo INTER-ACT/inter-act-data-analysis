@@ -1,0 +1,31 @@
+<div class="outer-wrapper">
+  <div class="view-switch" xmlns="">
+    <button class="switch-button no-animation" (click)="showGenerall=true"
+            [ngClass]="{'akitve-switch-button':showGenerall}">Allgemeine Fassung
+    </button>
+    <button class="switch-button no-animation" (click)="showGenerall=false"
+            [ngClass]="{'akitve-switch-button':!showGenerall}">Userspezifische Fassung
+    </button>
+  </div>
+  <div class="wrapper" *ngIf="!showGenerall">
+    <ng-select
+      class="select-username"
+      [items]="users|async"
+      bindLabel="username"
+      placeholder="User auswählen"
+      (change)="changeUserId()"
+      [(ngModel)]="user">
+    </ng-select>
+    <input class="input-user_id" type="text" placeholder="User_id" (input)="selectUser(user_id)" [(ngModel)]="user_id"
+           appOnlyNumbersDirective>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1" (click)="url_txb.focus()">URL</span>
+    </div>
+    <input type="text" class="form-control" id="share" [value]="url" readonly #url_txb>
+    <button type="button" class="btn btn-success" (click)="copyToClipboard(url_txb)" [disabled]="url==''">URL Kopieren</button>
+  </div>
+</div>
+<iframe *ngIf="url!=''" [src]="url|safe" allowfullscreen>
+</iframe>

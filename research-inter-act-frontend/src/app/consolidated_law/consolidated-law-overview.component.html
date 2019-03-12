@@ -1,0 +1,10 @@
+<h2>Einstellungen für die allgemeine Gesetzesfassung</h2>
+<div class="container" *ngIf="loaded">
+  <div *ngFor="let setting of settings | async">
+    <p>{{setting.faktor}}</p>
+    <app-setting-button [setting]="setting"></app-setting-button>
+  </div>
+  <h4>Ansicht</h4>
+  <app-example-view></app-example-view>
+</div>
+<app-loading-animation *ngIf="!loaded"></app-loading-animation>

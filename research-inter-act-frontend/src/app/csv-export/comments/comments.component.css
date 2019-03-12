@@ -1,0 +1,29 @@
+.row {
+  max-height: 40px;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.list-group{
+  margin-top: 20px;
+}
+
+button {
+  margin: 0 15px 0 15px;
+  font-size: 11pt;
+}
+

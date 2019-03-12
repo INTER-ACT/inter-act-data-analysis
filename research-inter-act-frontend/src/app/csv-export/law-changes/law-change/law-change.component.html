@@ -1,0 +1,12 @@
+<a routerLink="{{lawChange.aenderungs_id}}" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Änderungsvorschlag {{lawChange.aenderungs_id}} - {{lawChange.titel_neu}}</h5>
+    <small>Änderungsvorschlag zu §{{lawChange.paragraph}}</small>
+  </div>
+  <div class="progress mb-1">
+    <div class="progress-bar" role="progressbar" [@appearance] [attr.aria-valuenow]="conversationRate"
+         [ngStyle]="{ 'width': conversationRate + '%' }" aria-valuemin="0"
+         popover="Konversationsrate: {{lawChange.conversationRate}}" [popoverOnHover]="true" [popoverAnimation]="true"
+         aria-valuemax="100"></div>
+  </div>
+</a>

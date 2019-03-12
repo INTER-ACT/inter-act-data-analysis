@@ -1,0 +1,21 @@
+<div class="row" *ngIf="comment.kommentare_id.length>0">
+  <div class="col-lg-7">
+    <p>Mitimportieren der betreffenden</p>
+    <div class="card">
+      <div class="add-export card-body" [ngClass]="{'selected':exportSubcomments}">Unterkommentare <span class="fa form-control-feedback"
+                                                              (click)="changeExportSubcomments()"
+                                                              [ngClass]="{'fa-check':exportSubcomments,
+                                                                'fa-remove':!exportSubcomments}"></span></div>
+    </div>
+  </div>
+</div>
+<div class="row less-margin">
+  <div class="col-md-7">
+    <label class="content-cbx">
+      Bezugs-{{comment.typ=='k'? "Kommentar":(comment.typ=='g'? "Paragraphen": "Änderungsvorschlag")}} mitimportieren
+      <input type="checkbox" [checked]="exportReference" (change)="changeExportReference()">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+</div>
+

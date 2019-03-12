@@ -1,0 +1,29 @@
+<h1>Paragraphendiskussionen</h1>
+<div class="wrapper">
+<div class="row">
+  <button class="btn btn-sm btn-success"  [ngClass]="{'col-lg-4':loadedCSV,'col-lg-5':!loadedCSV}"(click)="downloadCSV()" [disabled]="!loadedCSV">
+    <i class='fa fa-circle-o-notch fa-spin'
+       *ngIf="!loadedCSV"></i>{{!loadedCSV ? " Gesamtübersicht der Paragraphendiskussionen wird heruntergeladen" :
+    "Gesamtübersicht exportieren"}}</button>
+  <div class="col"></div>
+  <div class="form-group has-search col-lg-5">
+    <span class="fa fa-search form-control-feedback "></span>
+    <input type="text" class="form-control" placeholder="Paragraphen suchen" [(ngModel)]="filter">
+  </div>
+</div>
+<div class="row">
+  <div class="dropdown">
+    <button type="button" class="dropdown-button btn-lg dropdown-toggle no-animation" data-toggle="dropdown">
+      Sortieren nach <b>{{sortList[sort]}}</b><span class="fa form-control-feedback fa-caret-down margin-left"></span>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" *ngFor="let item of sortList; let i=index" (click)="sort=i">{{item}}</a>
+    </div>
+  </div>
+</div>
+</div>
+<div class="list-group animate-bottom" *ngIf="loaded">
+  <app-law *ngFor="let law of laws | lawsFilter:filter |lawsSorter:sortList[sort]" [law]="law" [conversationPercent]=
+    "round(100*(law.conversationRate/getMaxConversationRate()))"></app-law>
+</div>
+<app-loading-animation *ngIf="!loaded"></app-loading-animation>

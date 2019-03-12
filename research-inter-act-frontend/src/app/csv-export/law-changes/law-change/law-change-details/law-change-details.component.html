@@ -1,0 +1,27 @@
+<div class="container" *ngIf="lawChange!=null">
+  <h1>Änderungsvorschlag {{lawChange.aenderungs_id}}</h1>
+  <app-select-law-change-columns [lawChange]="lawChange"></app-select-law-change-columns>
+  <app-select-law-change-references [lawChange]="lawChange"></app-select-law-change-references>
+  <app-select-law-change-table [lawChange]="lawChange"></app-select-law-change-table>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <button class="btn btn-lg btn-success"
+              [disabled]="columns.length==0 ||
+              (!loaded||!loadedLawChanges||!loadedComments||!loadedRatings||!loadedReference)
+              ||!loadedZip"
+              (click)="!zipped?downloadBlob():downloadZippedBlob()">
+        <i class='fa fa-circle-o-notch fa-spin'
+           *ngIf="!loaded||!loadedLawChanges||!loadedComments||!loadedRatings||!loadedZip||!loadedReference"></i>
+        {{!loaded||!loadedLawChanges||!loadedComments||!loadedRatings ||!loadedZip||!loadedReference
+        ? "Änderungsvorschlag wird exportiert" : "Exportieren"}}</button>
+      <label class="checkbox-inline">
+        <input type="checkbox"
+               [checked]="zipped"
+               (change)="changeZipped()"
+               [disabled]="!exportLawChanges && !exportComments && !exportRatings && !exportReference">  Als ZIP-Datei herunterladen
+      </label>
+    </div>
+  </div>
+</div>
+<app-loading-animation *ngIf="lawChange==null"></app-loading-animation>

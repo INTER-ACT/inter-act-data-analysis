@@ -1,0 +1,34 @@
+div {
+  float: left;
+  background: #F6F6F6;
+  border-style: solid;
+  border-color: #a3a5aa;
+  margin-right: 10px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-right: 4px;
+  padding-left: 4px;
+  border-radius: 10px;
+}
+
+span {
+  visibility: hidden;
+  font-size: 15pt;
+  padding-top: 3px;
+}
+
+div:hover {
+  background: #a3a5aa;
+  cursor: default;
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+}
+div:hover span{
+  visibility: visible;
+  cursor: pointer;
+}
+
+span:hover {
+  color: #F6F6F6;
+}

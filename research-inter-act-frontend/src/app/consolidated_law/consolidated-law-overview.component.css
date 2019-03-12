@@ -1,0 +1,19 @@
+.container{
+  align-content: center;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+p{
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+h4{
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+app-example-view{
+  width: 100%;
+  height: 100%;
+}

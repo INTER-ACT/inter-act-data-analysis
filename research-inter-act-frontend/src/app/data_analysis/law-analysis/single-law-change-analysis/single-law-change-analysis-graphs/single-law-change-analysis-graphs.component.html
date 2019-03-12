@@ -1,0 +1,50 @@
+<p>Diagramme für eine bestimmte Gruppe von Usern</p>
+<label for="date-range">Zeitraum</label>
+<input type="text" ngxDaterangepickerMd [(ngModel)]="selected"
+       [locale]="{applyLabel: 'Auswählen', format: 'DD.MM.YYYY'}"
+       class="form-control" placeholder="keinen Zeitraum ausgewählen" id="date-range"/>
+<label (click)="educationSelect.focus()">Ausbildungen</label>
+<ng-select [items]="educations|async"
+           #educationSelect
+           id="ausbildung"
+           bindLabel="ausbildung"
+           [closeOnSelect]="true"
+           [clearable]="true"
+           [clearOnBackspace]="true"
+           [multiple]="false"
+           placeholder="keine Ausbildung ausgewählt"
+           [(ngModel)]="selectedEducation">
+</ng-select>
+<label (click)="legalExpertiseSelect.focus()">Rechtskenntnisse</label>
+<ng-select [items]="legalExpertises|async"
+           bindLabel="rechtskenntnis"
+           #legalExpertiseSelect
+           [closeOnSelect]="true"
+           [clearable]="true"
+           [clearOnBackspace]="true"
+           [multiple]="false"
+           placeholder="kein Rechtskenntnis ausgewählt"
+           [(ngModel)]="selectedLegalExpertise">
+</ng-select>
+<label (click)="age1.value!=''?age2.focus():age1.focus()">Alter</label>
+<div class="age-box">
+  <label for="age1">Von</label>
+  <input type="number" id="age1" #age1 appOnlyNumbersDirective class="age-input" [(ngModel)]="maxAge">
+  <label for="age2">Bis</label>
+  <input type="number" id="age2" #age2 appOnlyNumbersDirective class="age-input" [(ngModel)]="minAge">
+</div>
+<p>Diagramm über die Aktivitäten eines Änderungsvorschlags</p>
+<app-law-change-graph-line-chart
+  [startDate]="selected?.startDate?.toDate()"
+  [endDate]="selected?.endDate?.toDate()"
+  [selectedEducation]="selectedEducation"
+  [selectedLegalExpertise]="selectedLegalExpertise"
+  [minAge]="minAge"
+  [maxAge]="maxAge"
+  [users]="users"
+  [law]="lawChange"
+  [comments]="comments"
+  [lawChanges]="lawChanges"
+  [ratings]="ratings">
+
+</app-law-change-graph-line-chart>

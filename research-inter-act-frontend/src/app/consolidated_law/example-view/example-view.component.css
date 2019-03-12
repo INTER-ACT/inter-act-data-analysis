@@ -1,0 +1,66 @@
+.view-switch{
+  display: flex;
+  flex-flow: row wrap;
+}
+.switch-button{
+  width: 200px;
+  height: 50px;
+  background: #f0f0f0;
+  border-style:none;
+  cursor: pointer;
+}
+.switch-button:hover{
+  background: #e1e3e8;
+}
+.akitve-switch-button{
+  background: #21568C;
+  color: white;
+  cursor: default;
+}
+.akitve-switch-button:hover{
+  background: #21568C;
+}
+button:focus {outline:0;}
+.wrapper{
+  display: flex;
+  flex-flow: row;
+  width: 400px;
+}
+.select-username{
+  width: 100%;
+}
+.input-user_id{
+  width: 70px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  margin-left: 5px;
+  text-align: center;
+}
+iframe{
+  width: 100%;
+  position: relative;
+  height: 1000px;
+  border: none;
+  margin-top: 10px;
+}
+.outer-wrapper{
+  align-content: center;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.copy-url-button{
+  background: #21568C;
+  color: white;
+}
+.copy-url-button:focus {outline:0;}
+
+.form-control{
+  background: white;
+}
+
+.input-group{
+  margin-top: 40px;
+  width: 70%;
+}

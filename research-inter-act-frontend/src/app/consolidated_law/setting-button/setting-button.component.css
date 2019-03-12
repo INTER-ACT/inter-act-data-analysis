@@ -1,0 +1,32 @@
+.button-wrapper{
+  flex-flow: row wrap;
+  justify-content: left;
+}
+
+button{
+  height: 50px;
+  width: 70px;
+  background: none;
+  font-size: 15pt;
+  border-color: #EAEAEA;
+  border-style: solid;
+  border-width: 1px;
+  border-right-width: 2px;
+  cursor: pointer;
+}
+button:focus {outline:0;}
+button:hover{
+  background: #EAEAEA;
+}
+
+.rightest-button{
+  border-right-width: 1px;
+}
+
+.button-active{
+  background: rgba(33,86,140,0.4);
+}
+.button-active:hover{
+  cursor: pointer;
+  background: rgba(33,86,140,0.4);
+}

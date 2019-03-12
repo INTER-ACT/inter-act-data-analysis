@@ -1,0 +1,11 @@
+<a routerLink="{{comment.kommentar_id}}" class="list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">Kommentar {{comment.kommentar_id}}</h5>
+    <small><strong>Bezug: </strong>{{comment.typ=='k'?
+      "Kommentar mit ID " +
+      comment.kommentar_bezugs_id:(comment.typ=='g'?
+        "Paragraph mit ID " + comment.kommentar_bezugs_id:
+        "Änderungsvorschlag mit ID " + comment.kommentar_bezugs_id
+    )}}</small>
+  </div>
+</a>

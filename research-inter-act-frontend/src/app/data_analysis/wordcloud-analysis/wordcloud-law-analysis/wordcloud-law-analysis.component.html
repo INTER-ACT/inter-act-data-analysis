@@ -1,0 +1,19 @@
+<div class="border">
+<h3><small class="text-muted">Nutzung pro Paragraphen</small></h3>
+<p>Zeigt wie die Benutzer zu einem bestimmten Paragraphen gelangen</p>
+<ng-select #lawSelect *ngIf="lawArray?.length!=0"
+           [items]="lawArray" [clearOnBackspace]="true"
+           [clearable]="false" [searchable]="false"
+           (change)="changeUrlParam()" [(ngModel)]="selectedLawId"
+           bindLabel="showText" bindValue="id">
+  <ng-template ng-header-tmp>
+    <input style="width: 100%; line-height: 24px" type="text" placeholder="Suchen" (input)="lawSelect.filter($event.target.value)" />
+  </ng-template>
+</ng-select>
+
+ <app-wordcloud-law-line-chart
+   [startDate]="selected?.startDate?.toDate()"
+   [endDate]="selected?.endDate?.toDate()"
+  [statistcs]="statistics"
+ ></app-wordcloud-law-line-chart>
+</div>
